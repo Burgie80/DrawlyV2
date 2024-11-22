@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 // Base config that applies to either development or production mode.
 const config = {
@@ -30,6 +31,15 @@ const config = {
     new HtmlWebpackPlugin({
       template: 'src/index.html',
     }),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: path.resolve(__dirname, 'src/js'),
+          to: path.resolve(__dirname, 'build/js'),
+          noErrorOnMissing: true
+        }
+      ]
+    }),
   ],
 };
 
@@ -54,6 +64,20 @@ module.exports = (env, argv) => {
     // Ignore spurious warnings from source-map-loader
     // It can't find source maps for some Closure modules and that is expected
     config.ignoreWarnings = [/Failed to parse source map/];
+  }
+  else {
+    // For production builds, copy Skulpt files to dist directory
+    config.plugins.push(
+      new CopyWebpackPlugin({
+        patterns: [
+          {
+            from: path.resolve(__dirname, 'src/js'),
+            to: path.resolve(__dirname, 'dist/js'),
+            noErrorOnMissing: true
+          }
+        ]
+      })
+    );
   }
   return config;
 };
