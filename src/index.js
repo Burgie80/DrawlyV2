@@ -13,8 +13,10 @@ import { toolbox } from './toolbox';
 import './index.css';
 // import { javascriptGenerator } from 'blockly/javascript';
 import { pythonGenerator } from 'blockly/python';
-import { registerFieldAngle } from '@blockly/field-angle';
-registerFieldAngle();
+// import { registerFieldAngle } from '@blockly/field-angle';
+// registerFieldAngle({
+//   step: 1
+// });
 
 // Register the blocks and generator with Blockly
 Blockly.common.defineBlocks(blocks);
@@ -204,15 +206,15 @@ async function runCode() {
     const fullCode = updatedCode();
     console.log('Executing Python code:', fullCode);
 
-    var skPromise = Sk.misceval.asyncToPromise(function() {
+    var skPromise = Sk.misceval.asyncToPromise(function () {
       return Sk.importMainWithBody("<stdin>", false, fullCode, true);
     });
-    skPromise.then(function(mod) {
-        console.log('success');
+    skPromise.then(function (mod) {
+      console.log('success');
     },
-        function(err) {
+      function (err) {
         console.log(err.toString());
-    });
+      });
   } catch (err) {
     console.error('Skulpt loading error:', err.toString());
     if (outputDiv) {

@@ -1,4 +1,21 @@
 import * as Blockly from 'blockly/core';
+import { FieldAngle } from '@blockly/field-angle';
+
+class CoolFieldAngle extends FieldAngle {
+    static DEFAULT_PRECISION = 1;  // Override the 15-degree default
+
+    constructor(value, validator = null) {
+        super(value, validator);
+        this.setPrecision(1);  // Ensure 1-degree precision
+    }
+}
+
+Blockly.fieldRegistry.register('field_angle', CoolFieldAngle);
+
+// import { registerFieldAngle } from '@blockly/field-angle';
+// registerFieldAngle({
+//     snap: 1
+// });
 
 // Motion blocks
 import { moveSteps } from './motion/move_steps';
