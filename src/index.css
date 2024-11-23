@@ -157,8 +157,8 @@ button:disabled {
 
 #turtleCanvas {
   display: block; /* Evita comportamientos inesperados */
-  width: 40px; /* Asegura que respeta su contenedor */
-  height: 40px; /* Asegura que no se desborde */
+  width: 100%; /* Asegura que respeta su contenedor */
+  height: 100%; /* Asegura que no se desborde */
   position: relative; /* Controla su posicionamiento */
   overflow: hidden; /* Evita que dibuje fuera de los límites */
 }

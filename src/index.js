@@ -71,7 +71,6 @@ function loadSkulpt() {
   });
 }
 
-
 if (!blocklyDiv) {
   throw new Error("div with id 'blocklyDiv' not found");
 }
@@ -191,8 +190,7 @@ async function runCode() {
     });
 
     // Configure turtle graphics
-    Sk.TurtleGraphics = Sk.TurtleGraphics || {};
-    Sk.TurtleGraphics.target = canvasId;
+    (Sk.TurtleGraphics || (Sk.TurtleGraphics = {})).target = canvasId;
 
     // Configure Skulpt after importing modules
     Sk.onAfterImport = function (library) {
@@ -206,17 +204,15 @@ async function runCode() {
     const fullCode = updatedCode();
     console.log('Executing Python code:', fullCode);
 
-    try {
-      await Sk.misceval.asyncToPromise(function () {
-        return Sk.importMainWithBody('<stdin>', false, fullCode, true);
-      });
-      console.log('Code executed successfully');
-    } catch (err) {
-      console.error('Python execution error:', err.toString());
-      if (outputDiv) {
-        outputDiv.innerHTML += `<div class="text-red-500">${err.toString()}</div>`;
-      }
-    }
+    var skPromise = Sk.misceval.asyncToPromise(function() {
+      return Sk.importMainWithBody("<stdin>", false, fullCode, true);
+    });
+    skPromise.then(function(mod) {
+        console.log('success');
+    },
+        function(err) {
+        console.log(err.toString());
+    });
   } catch (err) {
     console.error('Skulpt loading error:', err.toString());
     if (outputDiv) {
