@@ -10,12 +10,7 @@ class CoolFieldAngle extends FieldAngle {
     }
 }
 
-Blockly.fieldRegistry.register('field_angle', CoolFieldAngle);
-
-// import { registerFieldAngle } from '@blockly/field-angle';
-// registerFieldAngle({
-//     snap: 1
-// });
+Blockly.fieldRegistry.register('field_angle', CoolFieldAngle); // Overwrite field_angle with the new class
 
 // Motion blocks
 import { moveSteps } from './motion/move_steps';

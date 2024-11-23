@@ -13,10 +13,6 @@ import { toolbox } from './toolbox';
 import './index.css';
 // import { javascriptGenerator } from 'blockly/javascript';
 import { pythonGenerator } from 'blockly/python';
-// import { registerFieldAngle } from '@blockly/field-angle';
-// registerFieldAngle({
-//   step: 1
-// });
 
 // Register the blocks and generator with Blockly
 Blockly.common.defineBlocks(blocks);
@@ -83,78 +79,6 @@ function updatedCode() {
 
   return `from turtle import Turtle\nimport time\nt = Turtle()\nt.color('black')\nt.down()\n${code}\ntime.sleep(2)`;
 }
-
-// This function resets the code and output divs, shows the
-// generated code from the workspace, and evals the code.
-// In a real application, you probably shouldn't use `eval`.
-// function runCode() {
-//   if (typeof Sk === 'undefined') {
-//     console.error('Error: Skulpt is not loaded. Check if the skulpt.min.js and skulpt-stdlib.js files exist in the ./js/ directory and are being loaded correctly.');
-//     if (outputDiv) {
-//       outputDiv.innerHTML = '<div class="text-red-500">Error: Python interpreter (Skulpt) failed to load. Please check the console for more details.</div>';
-//     }
-//     return;
-//   }
-
-//   const code = pythonGenerator.workspaceToCode(ws);
-
-//   if (codeDiv) codeDiv.textContent = code;
-//   if (outputDiv) outputDiv.innerHTML = '';
-
-//   // Get canvas element
-//   const canvas = document.getElementById(canvasId);
-//   if (!canvas) {
-//     console.error('Canvas element not found');
-//     if (outputDiv) {
-//       outputDiv.innerHTML += '<div class="text-red-500">Error: Canvas element not found</div>';
-//     }
-//     return;
-//   }
-
-//   // Configuración para Skulpt después de importar módulos específicos
-//   Sk.onAfterImport = function (library) {
-//     if (library === 'turtle') {
-//       Sk.tg.defaults.animate = false;
-//       Sk.tg.Turtle.prototype.speed = function () { };
-//       Sk.tg.Turtle.prototype.delay = function () { };
-//     }
-//   };
-
-//   // Configuración para Skulpt
-//   Sk.configure({
-//     output: function (text) {
-//       if (outputDiv) outputDiv.innerHTML += text;
-//     },
-//     read: function (x) {
-//       if (!Sk.builtinFiles || !Sk.builtinFiles['files'][x]) {
-//         throw "File not found: '" + x + "'";
-//       }
-//       return Sk.builtinFiles['files'][x];
-//     },
-//     __future__: Sk.python3,
-//     retainglobals: true,
-//   });
-
-//   Sk.canvas = canvasId;
-
-//   // Configure turtle graphics
-//   Sk.TurtleGraphics = Sk.TurtleGraphics || {};
-//   Sk.TurtleGraphics.target = canvasId;
-
-//   const fullCode = updatedCode();
-//   console.log(fullCode);
-
-//   Sk.misceval.asyncToPromise(function () {
-//     return Sk.importMainWithBody('<stdin>', false, fullCode, true);
-//   }).then(function (mod) {
-//     console.log('Code executed successfully');
-//   }).catch(function (err) {
-//     console.error(err.toString());
-//     if (outputDiv) {
-//       outputDiv.innerHTML += `<div class="text-red-500">${err.toString()}</div>`;
-//     }
-//   });
-// }
 
 async function runCode() {
   try {
