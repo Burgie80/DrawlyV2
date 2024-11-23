@@ -2,7 +2,7 @@
 // a certain image a number of steps according to the given number.
 export const moveSteps = {
   type: "move_steps",
-  tooltip: "",
+  tooltip: "Move an amount of steps in the direction the turtle is facing",
   helpUrl: "",
   message0: "move %1 steps %2",
   args0: [

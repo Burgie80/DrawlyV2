@@ -1,6 +1,6 @@
 export const goTo = {
   type: "goto",
-  tooltip: "",
+  tooltip: "Go to a specific cardinal position",
   helpUrl: "",
   message0: "go to x: %1 , y: %2 %3",
   args0: [

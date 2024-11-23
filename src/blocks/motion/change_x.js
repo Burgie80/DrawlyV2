@@ -1,6 +1,6 @@
 export const changeX = {
   type: "change_x",
-  tooltip: "",
+  tooltip: "Changes the position of the turtle's x coordinate",
   helpUrl: "",
   message0: "change x by: %1 %2",
   args0: [
